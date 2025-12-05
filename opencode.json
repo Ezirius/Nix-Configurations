@@ -1,0 +1,49 @@
+{
+    "$schema": "https://opencode.ai/config.json",
+    "agent": {
+        "plan": {
+            "tools": {
+                "glob": true,
+                "grep": true,
+                "list": true,
+                "read": true,
+                "todoread": true,
+                "todowrite": true,
+                "webfetch": true,
+                "bash": false,
+                "edit": false,
+                "patch": false,
+                "write": false
+            },
+            "permission": {
+                "webfetch": "allow",
+                "bash": "deny",
+                "doom_loop": "deny",
+                "edit": "deny",
+                "external_directory": "deny"
+            }
+        },
+        "build": {
+            "tools": {
+                "bash": true,
+                "edit": true,
+                "glob": true,
+                "grep": true,
+                "list": true,
+                "patch": true,
+                "read": true,
+                "todoread": true,
+                "todowrite": true,
+                "webfetch": true,
+                "write": true
+            },
+            "permission": {
+                "webfetch": "allow",
+                "bash": "ask",
+                "edit": "ask",
+                "doom_loop": "deny",
+                "external_directory": "deny"
+            }
+        }
+    }
+}

@@ -1,0 +1,7 @@
+keys:
+  - &shared age1gq4ck05k57zk0kkd4qegej64jvsj5klhchmlk6wn3472et6nfayst5xzhk
+creation_rules:
+  - path_regex: Secrets/.*/sops-nix\.yaml$
+    key_groups:
+      - age:
+          - *shared
