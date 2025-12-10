@@ -1,6 +1,6 @@
 # Maldoria-specific home-manager configuration for ezirius
 # Shared settings are in common-ezirius-home.nix
-{ lib, ... }:
+{ lib, pkgs, ... }:
 let
   secrets = import ../../Private/Common/git-agecrypt.nix;
   pubkeys = import ../../Public/Maldoria/keys.nix;
@@ -29,7 +29,7 @@ in
         serverAliveInterval = 60;
         serverAliveCountMax = 3;
         extraOptions = {
-          IdentityAgent = "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock";
+          IdentityAgent = "\"~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock\"";
           KexAlgorithms = "mlkem768x25519-sha256,sntrup761x25519-sha512@openssh.com,curve25519-sha256,curve25519-sha256@libssh.org";
           Ciphers = "chacha20-poly1305@openssh.com";
           MACs = "hmac-sha2-512-etm@openssh.com";
@@ -94,6 +94,30 @@ in
     settings = {
       # 1Password SSH signing program (macOS-specific)
       gpg.ssh.program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
+    };
+  };
+
+  # --- TERMINAL ---
+  programs.ghostty = {
+    enable = true;
+    package = pkgs.ghostty-bin;
+    enableZshIntegration = true;
+    settings = {
+      font-family = "JetBrainsMono Nerd Font";
+      font-size = 14;
+      theme = "catppuccin-mocha";
+      window-padding-x = 8;
+      window-padding-y = 8;
+      window-decoration = true;
+      mouse-hide-while-typing = true;
+      cursor-style = "block";
+      cursor-style-blink = false;
+      copy-on-select = true;
+      clipboard-trim-trailing-spaces = true;
+      shell-integration = "detect";
+      scrollback-limit = 10000;
+      confirm-close-surface = false; # Don't prompt on close
+      bold-is-bright = false; # Use actual bold font
     };
   };
 }
